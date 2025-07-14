@@ -15,7 +15,7 @@
         /* Style untuk Header dengan Gambar Latar */
         .hero-header {
             position: relative;
-            height: 60vh; /* Tinggi header, bisa disesuaikan */
+            height: 70vh; /* Tinggi header disesuaikan agar gradien lebih terlihat */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -24,7 +24,13 @@
             text-align: center;
             color: white;
         }
-        /* Lapisan gelap di atas gambar agar teks lebih mudah dibaca */
+        /* ==================================================================
+        == IMPLEMENTASI GRADIENT ==
+        ==================================================================
+        - Di sini kita pakai linear-gradient untuk menciptakan efek fade-to-black.
+        - Dimulai dari sedikit gelap di atas (rgba 0.2), makin gelap di tengah (rgba 0.6),
+          dan menjadi hitam pekat di bawah (#000000) untuk menyatu dengan body.
+        */
         .hero-header::before {
             content: '';
             position: absolute;
@@ -32,7 +38,12 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6); 
+            background-image: linear-gradient(
+                to bottom, 
+                rgba(0, 0, 0, 0.2) 0%, 
+                rgba(0, 0, 0, 0.6) 50%, 
+                #000000 100%
+            );
         }
         /* Konten teks di dalam header */
         .hero-content {
@@ -41,22 +52,15 @@
         }
     </style>
 </head>
-<!-- 
-==================================================================
-== PERUBAHAN BODY ==
-==================================================================
-- Background diubah menjadi hitam pekat (bg-black).
-- Warna teks default diubah menjadi abu-abu terang (text-gray-300).
--->
 <body class="bg-black text-gray-300">
 
     <!-- 
     ==================================================================
     == BAGIAN HEADER DENGAN GAMBAR ==
     ==================================================================
-    Ganti URL gambar di dalam style="..." di bawah ini.
+    Ganti URL gambar di dalam style="..." di bawah ini dengan link gambar publik.
     -->
-    <header class="hero-header" style="background-image: url('https://images.unsplash.com/photo-1574267432553-f3e2780e03ca?q=80&w=2070&auto=format&fit=crop');">
+    <header class="hero-header" style="background-image: url('headerimage.jpg');">
         <div class="hero-content px-4">
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white">Menjelajahi Dunia Sinema</h1>
             <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-200">Sebuah Analisis Visual Terhadap Film dan Serial TV Populer di Indonesia Berdasarkan Data IMDb.</p>
@@ -73,13 +77,6 @@
         - Diberi padding vertikal untuk spasi atas dan bawah.
         -->
         <main class="py-12">
-            <!-- 
-            ==================================================================
-            == PERUBAHAN CONTAINER IFRAME ==
-            ==================================================================
-            - Dihilangkan padding horizontalnya agar menempel ke tepi.
-            - Dihilangkan background, rounded corner, dan shadow agar menyatu.
-            -->
             <div class="w-full">
                 <iframe width="100%" height="1600" src="https://lookerstudio.google.com/embed/reporting/b6befd9d-6a73-4739-8829-6403a95f8593/page/rr9QF" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
             </div>
