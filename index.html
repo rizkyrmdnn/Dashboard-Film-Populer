@@ -3,62 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Judul yang akan muncul di tab browser -->
     <title>Dashboard Film & Serial TV Populer di Indonesia</title>
-    <!-- Memuat Tailwind CSS untuk styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Memuat Google Fonts (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Menggunakan font Inter sebagai default */
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Style untuk memastikan iframe responsif dan memenuhi kontainer */
-        .iframe-container {
+        /* Style untuk Header dengan Gambar Latar */
+        .hero-header {
             position: relative;
-            width: 100%;
-            overflow: hidden;
-            /* Aspect Ratio 16:9, sesuaikan jika perlu */
-            padding-top: 56.25%; 
+            height: 60vh; /* Tinggi header, bisa disesuaikan */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
         }
-        .iframe-container iframe {
+        /* Lapisan gelap di atas gambar agar teks lebih mudah dibaca */
+        .hero-header::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6); 
+        }
+        /* Konten teks di dalam header */
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<!-- 
+==================================================================
+== PERUBAHAN BODY ==
+==================================================================
+- Background diubah menjadi hitam pekat (bg-black).
+- Warna teks default diubah menjadi abu-abu terang (text-gray-300).
+-->
+<body class="bg-black text-gray-300">
 
-    <!-- Kontainer utama halaman -->
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- 
+    ==================================================================
+    == BAGIAN HEADER DENGAN GAMBAR ==
+    ==================================================================
+    Ganti URL gambar di dalam style="..." di bawah ini.
+    -->
+    <header class="hero-header" style="background-image: url('https://images.unsplash.com/photo-1574267432553-f3e2780e03ca?q=80&w=2070&auto=format&fit=crop');">
+        <div class="hero-content px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white">Menjelajahi Dunia Sinema</h1>
+            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-200">Sebuah Analisis Visual Terhadap Film dan Serial TV Populer di Indonesia Berdasarkan Data IMDb.</p>
+        </div>
+    </header>
+
+    <!-- 
+    Kontainer utama halaman, dibuat edge-to-edge
+    -->
+    <div class="w-full">
         
-        <!-- Header Halaman -->
-        <header class="text-center mb-6">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">Dashboard Film & Serial TV Populer</h1>
-            <p class="text-lg text-gray-600 mt-2">Sebuah Analisis Visual Berdasarkan Data IMDb</p>
-        </header>
-
-        <!-- Kontainer untuk Dashboard Looker Studio -->
-        <main>
-            <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
-                <div class="iframe-container">
-                    <!-- Kode Iframe dari Looker Studio sudah ditempel di sini -->
-                    <iframe src="https://lookerstudio.google.com/embed/reporting/b6befd9d-6a73-4739-8829-6403a95f8593/page/rr9QF" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-                </div>
+        <!-- 
+        Kontainer untuk Dashboard Looker Studio
+        - Diberi padding vertikal untuk spasi atas dan bawah.
+        -->
+        <main class="py-12">
+            <!-- 
+            ==================================================================
+            == PERUBAHAN CONTAINER IFRAME ==
+            ==================================================================
+            - Dihilangkan padding horizontalnya agar menempel ke tepi.
+            - Dihilangkan background, rounded corner, dan shadow agar menyatu.
+            -->
+            <div class="w-full">
+                <iframe width="100%" height="1600" src="https://lookerstudio.google.com/embed/reporting/b6befd9d-6a73-4739-8829-6403a95f8593/page/rr9QF" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
             </div>
         </main>
 
-        <!-- Footer Halaman -->
-        <footer class="text-center mt-8">
-            <p class="text-gray-500">Dibuat oleh: Rizky Ramdhani Koswara</p>
-            <p class="text-sm text-gray-400">Penulisan Ilmiah - Universitas Gunadarma 2025</p>
+        <!-- 
+        ==================================================================
+        == BAGIAN FOOTER ==
+        ==================================================================
+        - Background diubah menjadi abu-abu sangat gelap (#121212).
+        -->
+        <footer class="mt-16" style="background-color: #121212;">
+            <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-gray-400">Dibuat oleh: Rizky Ramdhani Koswara</p>
+                <p class="mt-2 text-sm text-gray-500">Penulisan Ilmiah - Universitas Gunadarma 2025</p>
+                <p class="mt-4 text-xs text-gray-600">Data bersumber dari IMDb | Dibangun dengan Looker Studio</p>
+            </div>
         </footer>
 
     </div>
